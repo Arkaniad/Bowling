@@ -5,15 +5,20 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Bowling {
+    //Enumeration to make frame type handling easy to write
     enum FrameType {open, spare, strike, final}
+
+    //Class to make performing certain tasks on frames less repetitive
     class Frame {
         private FrameType type;
+        private int index;
         private int[] scores;
 
-        public Frame(int[] _scores) {
+        public Frame(int _index, int[] _scores) {
             if(_scores.Length != 2 && _scores.Length != 3) {
                 throw new Exception("Frame must have either 2 or 3 rolls.");
             } else {
+                index = _index;
                 scores = _scores;
                 if(scores.Length == 3) {
                     type = FrameType.final;
@@ -27,15 +32,39 @@ namespace Bowling {
             }
         }
 
-        public int[] getScores() {
+        public int[] GetScores() {
             return scores;
         }
 
-        public FrameType getFrameType() {
+        public int GetTotal() {
+            if(type == FrameType.final) {
+                return scores[0] + scores[1] + scores[2];
+            } else {
+                return scores[0] + scores[1];
+            }
+        }
+
+        public int GetRoll1() {
+            return scores[0];
+        }
+
+        public int GetRoll2() {
+            return scores[1];
+        }
+
+        public FrameType GetFrameType() {
             return type;
         }
-        public int getTotal() {
-            return scores[0] + scores[1];
+
+        public int GetIndex() {
+            return index;
+        }
+
+        public Boolean IsStrike() {
+            if(scores[0] == 10) {
+                return true;
+            }
+            return false;
         }
     }
 }
