@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{0388F0DB-D000-4E0D-B6EC-2CC3AF65A0D1}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Bowling</RootNamespace>
     <AssemblyName>Bowling</AssemblyName>
@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -47,6 +50,15 @@
   <ItemGroup>
     <Compile Include="Frame.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="IntructionsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IntructionsForm.Designer.cs">
+      <DependentUpon>IntructionsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NumericTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScoreForm.cs">
@@ -60,6 +72,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="IntructionsForm.resx">
+      <DependentUpon>IntructionsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ScoreForm.resx">
       <DependentUpon>ScoreForm.cs</DependentUpon>
     </EmbeddedResource>

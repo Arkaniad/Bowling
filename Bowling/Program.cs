@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Bowling {
     class Program {
+        [STAThread]
         static void Main(string[] args) {
-            ScoreForm main = new ScoreForm();
-            main.Show();
+
+            Application.EnableVisualStyles();
+            Application.Run(new ScoreForm());
             //Run the test cases!
-            TestGames();
+            //TestGames();
         }
 
         static void TestGames() {

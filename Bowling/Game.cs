@@ -8,6 +8,7 @@ namespace Bowling {
     class Game {
         private Frame[] frames;
         private int[] subtotals;
+        private int[] incremtotals;
         private int total;
 
         public Game(Frame[] _frames) {
@@ -28,6 +29,11 @@ namespace Bowling {
             Calculate();
         }
 
+        public void UpdateFrames(Frame[] _frames) {
+            frames = _frames;
+            Calculate();
+        }
+
         public int GetTotal() {
             return total;
         }
@@ -39,9 +45,20 @@ namespace Bowling {
         public int GetSubtotal(int _frameindex) {
             return subtotals[_frameindex];
         }
+
+        public int[] GetIncremTotals() {
+            return incremtotals;
+        }
+
+        public int GetIncremTotal(int _frameindex) {
+            return incremtotals[_frameindex];
+        }
         private void Calculate() {
+            CombSpares();
+
             int _total = 0;
             int[] _subtotals = new int[10];
+            int[] _incremtotals = new int[10];
             //Loop over every frame and create a subtotal for each frame
             for (int i = 0; i < frames.Length; i++) {
 
@@ -62,11 +79,13 @@ namespace Bowling {
                 if (_frame.GetFrameType() == FrameType.open) {
                     _subtotals[i] = _frame.GetTotal();
                     _total += _subtotals[i];
+                    _incremtotals[i] = _total;
 
                     //Spare is 10 + next roll
                 } else if (_frame.GetFrameType() == FrameType.spare) {
                     _subtotals[i] = _framenext.GetRoll1() + _frame.GetTotal();
                     _total += _subtotals[i];
+                    _incremtotals[i] = _total;
 
                     //Strike is.. kind of complicated.
                 } else if (_frame.GetFrameType() == FrameType.strike) {
@@ -84,18 +103,28 @@ namespace Bowling {
                         _subtotals[i] += _framenext.GetRoll1() + _framenext.GetRoll2();
                     }
                     _total += _subtotals[i];
+                    _incremtotals[i] = _total;
 
                     //Just total up the final frame
                 } else if (_frame.GetFrameType() == FrameType.final) {
                     _subtotals[i] = _frame.GetTotal();
                     _total += _subtotals[i];
+                    _incremtotals[i] = _total;
                 }
             }
 
             //Update the object fields with updated values
             subtotals = _subtotals;
             total = _total;
+            incremtotals = _incremtotals;
 
+        }
+
+        //Spares code to a -1 in the form, run through scores and replace -1 with the difference of 10 and the first roll
+        private void CombSpares() {
+            for(int i = 0; i < frames.Length; i++) {
+                frames[i].CombSpare();
+            }
         }
     }
 }
