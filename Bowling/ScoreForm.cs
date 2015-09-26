@@ -39,34 +39,34 @@ namespace Bowling {
             }
 
             int[] _subtotals = game.GetIncremTotals();
-            if (frame1r1.Text != string.Empty && frame1r2.Text != string.Empty) {
+            if (frame1r1.Text != string.Empty) {
                 frame1total.Text = _subtotals[0].ToString();
             }
-            if (frame2r1.Text != string.Empty && frame2r2.Text != string.Empty) {
+            if (frame2r1.Text != string.Empty) {
                 frame2total.Text = _subtotals[1].ToString();
             }
-            if (frame3r1.Text != string.Empty && frame3r2.Text != string.Empty) {
+            if (frame3r1.Text != string.Empty) {
                 frame3total.Text = _subtotals[2].ToString();
             }
-            if (frame4r1.Text != string.Empty && frame4r2.Text != string.Empty) {
+            if (frame4r1.Text != string.Empty) {
                 frame4total.Text = _subtotals[3].ToString();
             }
-            if (frame5r1.Text != string.Empty && frame5r2.Text != string.Empty) {
+            if (frame5r1.Text != string.Empty) {
                 frame5total.Text = _subtotals[4].ToString();
             }
-            if (frame6r1.Text != string.Empty && frame6r2.Text != string.Empty) {
+            if (frame6r1.Text != string.Empty) {
                 frame6total.Text = _subtotals[5].ToString();
             }
-            if (frame7r1.Text != string.Empty && frame7r2.Text != string.Empty) {
+            if (frame7r1.Text != string.Empty) {
                 frame7total.Text = _subtotals[6].ToString();
             }
-            if (frame8r1.Text != string.Empty && frame8r2.Text != string.Empty) {
+            if (frame8r1.Text != string.Empty) {
                 frame8total.Text = _subtotals[7].ToString();
             }
-            if (frame9r1.Text != string.Empty && frame9r2.Text != string.Empty) {
+            if (frame9r1.Text != string.Empty) {
                 frame9total.Text = _subtotals[8].ToString();
             }
-            if (frame10r1.Text != string.Empty && frame10r2.Text != string.Empty) {
+            if (frame10r1.Text != string.Empty) {
                 frame10total.Text = _subtotals[9].ToString();
             }
             gameTotal.Text = ("Game Total: " + game.GetTotal());
