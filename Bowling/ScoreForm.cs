@@ -16,10 +16,15 @@ namespace Bowling {
             RefreshFrames();
         }
 
+        //When File > New Game is pressed, clear all frames and start over.
         private void NewGame(object sender, EventArgs e) {
             ResetFrames();
         }
+
+        //Get values for all cells & organize it into the Game / Frame structure properly.
         private void RefreshFrames() {
+
+            //Create an array of Frame objects representative of the current state of all input boxes.
             Frame[] _frames = new Frame[10];
             _frames[0] = new Frame(1, new int[] { frame1r1.IntValue, frame1r2.IntValue });
             _frames[1] = new Frame(2, new int[] { frame2r1.IntValue, frame2r2.IntValue });
@@ -32,12 +37,14 @@ namespace Bowling {
             _frames[8] = new Frame(9, new int[] { frame9r1.IntValue, frame9r2.IntValue });
             _frames[9] = new Frame(10, new int[] { frame10r1.IntValue, frame10r2.IntValue, frame10r3.IntValue });
 
+            //If this is the first update, instantiate the Game object for this window. If not, just update the frames in the pre-existing one.
             if (game == null) {
                 game = new Game(_frames);
             } else {
                 game.UpdateFrames(_frames);
             }
 
+            //Set subtotal boxes (as long as the frame has been modified)
             int[] _subtotals = game.GetIncremTotals();
             if (frame1r1.Text != string.Empty) {
                 frame1total.Text = _subtotals[0].ToString();
@@ -69,8 +76,12 @@ namespace Bowling {
             if (frame10r1.Text != string.Empty) {
                 frame10total.Text = _subtotals[9].ToString();
             }
+
+            //Set game total status
             gameTotal.Text = ("Game Total: " + game.GetTotal());
         }
+
+        //Reset form and game
         private void ResetFrames() {
             frame1r1.Text = string.Empty;
             frame1r2.Text = string.Empty;
@@ -100,10 +111,12 @@ namespace Bowling {
         }
 
 
+        //Run any time a score is updated in any box
         private void ScoreUpdated(object sender, EventArgs e) {
             RefreshFrames();
         }
 
+        //Opens the instructions form
         private void OpenInstructions(object sender, EventArgs e) {
             Form instructions = new InstructionsForm();
             instructions.Show();

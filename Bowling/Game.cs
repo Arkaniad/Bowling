@@ -5,12 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Bowling {
+    //Class that wraps frames up into a Game wrapper for totalling & interfacing with UI
     class Game {
         private Frame[] frames;
         private int[] subtotals;
         private int[] incremtotals;
         private int total;
 
+        //Create Game from array of Frames
         public Game(Frame[] _frames) {
             if(_frames.Length != 10) {
                 throw new Exception("Cannot create a game without 10 frames!");
@@ -20,6 +22,7 @@ namespace Bowling {
             }
         }
 
+        //Create Game from array of rolls (Used for testing)
         public Game(int[][] rolls) {
             Frame[] _frames = new Frame[rolls.Length];
             for (int i = 0; i < rolls.Length; i++) {
@@ -29,30 +32,38 @@ namespace Bowling {
             Calculate();
         }
 
+        //Replace current frame set with new frame set
         public void UpdateFrames(Frame[] _frames) {
             frames = _frames;
             Calculate();
         }
 
+        //Get total score of game
         public int GetTotal() {
             return total;
         }
 
+        //Get subtotals for game (totals of each frame)
         public int[] GetSubtotals() {
             return subtotals;
         }
 
+        //Get subtotal for specific frame
         public int GetSubtotal(int _frameindex) {
             return subtotals[_frameindex];
         }
 
+        //Get incremental totals for game (score for each frame + previous frames, per frame. What's shown below each frame.)
         public int[] GetIncremTotals() {
             return incremtotals;
         }
 
+        //Get incremental total for a specific frame
         public int GetIncremTotal(int _frameindex) {
             return incremtotals[_frameindex];
         }
+
+        //Calculate the total score for the game, as well as the subtotals and incremental totals
         private void Calculate() {
             CombSpares();
 

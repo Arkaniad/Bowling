@@ -32,14 +32,17 @@ namespace Bowling {
             }
         }
 
-        public int[] GetScores() {
+        //Get all rolls for this frame
+        public int[] GetRolls() {
             return scores;
         }
 
-        public void SetScores(int[] _scores) {
+        //Set rolls for this frame
+        public void SetRolls(int[] _scores) {
             scores = _scores;
         }
 
+        //Get the frame total
         public int GetTotal() {
             if(type == FrameType.final) {
                 return scores[0] + scores[1] + scores[2];
@@ -48,6 +51,7 @@ namespace Bowling {
             }
         }
 
+        //Get an individual roll
         public int GetRoll1() {
             return scores[0];
         }
@@ -59,6 +63,7 @@ namespace Bowling {
             return scores[2];
         }
 
+        //Set an individual roll
         public void SetRoll1(int _roll) {
             scores[0] = _roll;
         }
@@ -70,14 +75,17 @@ namespace Bowling {
             scores[2] = _roll;
         }
 
+        //Get the frame type
         public FrameType GetFrameType() {
             return type;
         }
 
+        //Get the frame number
         public int GetIndex() {
             return index;
         }
 
+        //Determine if the frame is a strike
         public Boolean IsStrike() {
             if(scores[0] == 10) {
                 return true;
@@ -85,6 +93,7 @@ namespace Bowling {
             return false;
         }
 
+        //Correct spares from GUI input (slashes input as -1)
         public void CombSpare() {
             if(scores[1] == -1) {
                 scores[1] = 10 - scores[0];
